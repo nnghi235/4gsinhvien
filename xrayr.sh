@@ -11,6 +11,8 @@ read -p " NODE ID 1: " node_id1
   
 read -p " NODE ID 2: " node_id2
   [ -z "${node_id2}" ] && node_id2=0
+read -p  " CertDomain: " CertDomain
+  [ -z "${CertDomain}" ] && CertDomain="vn.speed4g.me"
 openssl req -newkey rsa:2048 -x509 -sha256 -days 365 -nodes -out /etc/XrayR/4gsinhvien.crt -keyout /etc/XrayR/4gsinhvien.key -subj "/C=JP/ST=Tokyo/L=Chiyoda-ku/O=Google Trust Services LLC/CN=google.com"
 cd /etc/XrayR
 cat >config.yml <<EOF
@@ -59,7 +61,7 @@ Nodes:
           ProxyProtocolVer: 0 
       CertConfig:
         CertMode: file 
-        CertDomain: "vn.speed4g.me" 
+        CertDomain1: "vn.speed4g.me" 
         CertFile: /etc/XrayR/4gsinhvien.crt
         KeyFile: /etc/XrayR/4gsinhvien.key
         Provider: cloudflare 
@@ -97,7 +99,7 @@ Nodes:
           ProxyProtocolVer: 0 
       CertConfig:
         CertMode: file 
-        CertDomain: "vn.speed4g.me" 
+        CertDomain2: "vn.speed4g.me" 
         CertFile: /etc/XrayR/4gsinhvien.crt 
         KeyFile: /etc/XrayR/4gsinhvien.key
         Provider: cloudflare 
@@ -108,6 +110,8 @@ Nodes:
 EOF
 sed -i "s|NodeID1:.*|NodeID: ${node_id1}|" ./config.yml
 sed -i "s|NodeID2:.*|NodeID: ${node_id2}|" ./config.yml
+sed -i "s|CertDomain1:.*|CertDomain: \"${CertDomain}\"|" ./config.yml
+sed -i "s|CertDomain2:.*|CertDomain: \"${CertDomain}\"|" ./config.yml
 cd /root
 clear
 xrayr restart
