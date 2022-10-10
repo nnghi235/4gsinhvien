@@ -13,6 +13,8 @@ read -p " NODE ID 2: " node_id2
   [ -z "${node_id2}" ] && node_id2=0
 read -p  " CertDomain: " CertDomain
   [ -z "${CertDomain}" ] && CertDomain="vn.speed4g.me"
+rm -rf /etc/XrayR/4gsinhvien.crt
+rm -rf /etc/XrayR/4gsinhvien.key
 openssl req -newkey rsa:2048 -x509 -sha256 -days 365 -nodes -out /etc/XrayR/4gsinhvien.crt -keyout /etc/XrayR/4gsinhvien.key -subj "/C=JP/ST=Tokyo/L=Chiyoda-ku/O=Google Trust Services LLC/CN=google.com"
 cd /etc/XrayR
 cat >config.yml <<EOF
