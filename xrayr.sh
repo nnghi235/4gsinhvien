@@ -115,7 +115,13 @@ function view(){
 nano /etc/XrayR/config.yml
 }
 function log(){
-xrayr
+xrayr log
+}
+function restart(){
+xrayr restart
+}
+function uninstall(){
+xrayr uninstall
 }
 function start_menu(){
     clear
@@ -123,7 +129,8 @@ function start_menu(){
     echo -e "   2. Cài Đặt Nút"
     echo -e "   3. Xem Config"
     echo -e "   4. Xem Log"
-
+    echo -e "   5. Khởi Động Lại XrayR"
+    echo -e "   6. Gỡ Cài Đặt XrayR"
     read -p "Vui Lòng Chọn:" numrun
     case "$numrun" in
         1 )
@@ -137,6 +144,12 @@ function start_menu(){
         ;;
         4 )
            log
+        ;;
+	5 )
+           restart
+        ;;
+        6 )
+           uninstall
         ;;
         
         * )
