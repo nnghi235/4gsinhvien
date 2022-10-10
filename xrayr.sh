@@ -111,6 +111,8 @@ sed -i "s|NodeID2:.*|NodeID: ${node_id2}|" ./config.yml
 cd /root
 clear
 xrayr restart
+clear
+echo -e "   Khởi Động XrayR Thành Công"
 }
 function view(){
 nano /etc/XrayR/config.yml
